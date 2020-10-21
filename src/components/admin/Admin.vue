@@ -9,7 +9,7 @@
                 :error-func="show_info"
             >
                 <template v-slot:header>
-                    <h1 class="text-left"><strong>我是业主</strong></h1>
+                    <h1 class="text-left"><strong>我是业主2333</strong></h1>
                 </template>
                 <template v-slot:content>
                     <ul>
