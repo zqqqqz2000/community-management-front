@@ -1,7 +1,23 @@
 <template>
     <div>
-        <b-card title="住户管理" sub-title="小区住户: 5个"></b-card>
-        <b-table ref="residentTable" selectable hover :items="resident_table">
+        <b-card
+            title="住户管理"
+            :sub-title="'小区住户: ' + residentNumber + '个'"
+        ></b-card>
+        <b-table
+            ref="residentTable"
+            selectable
+            hover
+            :items="resident_table"
+            :fields="[
+                'id',
+                'username',
+                'name',
+                'phone_number',
+                'job',
+                'actions',
+            ]"
+        >
             <template #cell(actions)="row">
                 <b-button
                     variant="danger"
@@ -81,36 +97,7 @@ export default {
     name: "ResidentManage",
     data: function () {
         return {
-            resident_table: [
-                {
-                    id: 1,
-                    name: "小明",
-                    phone_number: 13795555555,
-                    job: "保洁",
-                    actions: null,
-                },
-                {
-                    id: 2,
-                    name: "小方",
-                    phone_number: 13795555555,
-                    job: "保洁",
-                    actions: null,
-                },
-                {
-                    id: 3,
-                    name: "小明",
-                    phone_number: 13795555555,
-                    job: "保洁",
-                    actions: null,
-                },
-                {
-                    id: 4,
-                    name: "小明",
-                    phone_number: 13795555555,
-                    job: "保洁",
-                    actions: null,
-                },
-            ],
+            resident_table: [],
             username: "",
             password: "",
             phone_number: "",
@@ -123,6 +110,23 @@ export default {
         };
     },
     methods: {
+        refreshTable: function () {
+            this.$axios({
+                method: "post",
+                url: this.serverURL + "property/get_all_resident",
+                withCredentials: true,
+                data: {
+                    token: this.$cookies.get("token"),
+                },
+            }).then((response) => {
+                let data = response.data;
+                if (data.success) {
+                    this.resident_table = data.residents;
+                } else {
+                    this.alert("错误", data.info);
+                }
+            });
+        },
         alert: function (title, info) {
             this.modal = title;
             this.modalInfo = info;
@@ -132,7 +136,26 @@ export default {
             this.dismissCountDown = 3;
         },
         deleteResident: function (id) {
-            console.log(id);
+            this.deleteResidents([id]);
+        },
+        deleteResidents: function (ids) {
+            console.log(ids);
+            this.$axios({
+                method: "post",
+                url: this.serverURL + "property/delete_residents",
+                withCredentials: true,
+                data: {
+                    residents_id: ids,
+                    token: this.$cookies.get("token"),
+                },
+            }).then((response) => {
+                let data = response.data;
+                if (!data.success) {
+                    this.alert("错误", data.info);
+                } else {
+                    this.refreshTable();
+                }
+            });
         },
         selectAll: function () {
             this.$refs.residentTable.selectAllRows();
@@ -155,13 +178,25 @@ export default {
                     phone_number: this.phone_number,
                     name: this.name,
                     job: this.job,
-                    sessionid: this.$cookies.get("sessionid"),
+                    token: this.$cookies.get("token"),
                 },
             }).then((response) => {
                 let data = response.data;
-                if (!data.success) this.alert("错误", data.info);
+                if (!data.success) {
+                    this.alert("错误", data.info);
+                } else {
+                    this.refreshTable();
+                }
             });
         },
+    },
+    computed: {
+        residentNumber: function () {
+            return this.resident_table.length;
+        },
+    },
+    created: function () {
+        this.refreshTable();
     },
 };
 </script>

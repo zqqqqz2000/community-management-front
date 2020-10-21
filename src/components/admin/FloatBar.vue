@@ -91,7 +91,7 @@ export default {
             }).then((response) => {
                 let data = response.data;
                 if (data.success) {
-                    this.$cookies.set("sessionid", data.sessionid);
+                    this.$cookies.set("token", data.token);
                     this.$router.push(url);
                 } else {
                     this.errorFunc();
@@ -149,6 +149,10 @@ button {
     display: block;
 }
 
+.input-area input {
+    display: block;
+}
+
 @media (max-width: 1400px) {
     .float-bar {
         width: 350px;
@@ -182,7 +186,7 @@ button {
     .input-area {
         margin: 0;
         margin-top: -10px;
-        display: inline;
+        display: inline !important;
         line-height: 1em;
     }
     .input-area > button {
@@ -228,7 +232,6 @@ input[type="password"] {
     border: 0;
     border-bottom: white 1px solid;
     outline: none;
-    display: block;
     transition: 0.3s;
     line-height: 3em;
 }
