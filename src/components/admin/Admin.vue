@@ -6,6 +6,7 @@
                 color="#FFFFFF"
                 class="text-center"
                 url="/resident-manage/personal-information"
+                :login-api="serverURL + 'resident/login'"
                 :error-func="show_info"
             >
                 <template v-slot:header>

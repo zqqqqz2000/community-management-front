@@ -2,8 +2,11 @@
     <div>
         <side-bar :child-tree="menu" />
         <div class="center-container">
-            <router-view></router-view>
+            <router-view :alerter="alert"></router-view>
         </div>
+        <b-modal v-model="modalShow" :title="modalTitle">
+            {{ modalInfo }}
+        </b-modal>
     </div>
 </template>
 
@@ -16,6 +19,9 @@ export default {
     },
     data: function () {
         return {
+            modal: "",
+            modalInfo: "",
+            modalShow: false,
             menu: {
                 title: "物业管理",
                 key: "property_manage",
@@ -60,6 +66,13 @@ export default {
                 ],
             },
         };
+    },
+    methods: {
+        alert: function (title, info) {
+            this.modal = title;
+            this.modalInfo = info;
+            this.modalShow = true;
+        },
     },
 };
 </script>

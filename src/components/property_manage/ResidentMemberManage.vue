@@ -8,6 +8,7 @@
             ref="residentTable"
             selectable
             hover
+            class="resident-table"
             :items="resident_table"
             :fields="[
                 'id',
@@ -17,16 +18,26 @@
                 'job',
                 'actions',
             ]"
+            @row-selected="onRowSelected"
         >
             <template #cell(actions)="row">
                 <b-button
                     variant="danger"
                     size="sm"
                     @click="deleteResident(row.item.id)"
-                    >-</b-button
                 >
+                    &#128711;</b-button
+                >
+                <b-button
+                    size="sm"
+                    variant="info"
+                    @click="parkingManage(row.item.username)"
+                    >&#80;</b-button
+                >
+                <b-button size="sm" variant="success">&#127968;</b-button>
             </template>
         </b-table>
+        <!-- 新增住户 -->
         <b-modal
             @ok="commitNewResident"
             id="modal-new-resident"
@@ -78,23 +89,66 @@
                 请将必填信息（有星号）填写完整
             </b-alert>
         </b-modal>
-        <b-modal v-model="modalShow" :title="modalTitle">
-            {{ modalInfo }}
-        </b-modal>
+
         <b-button-group>
             <b-button variant="success" v-b-modal.modal-new-resident>
                 增加
             </b-button>
             <b-button variant="warning" @click="selectAll">全选</b-button>
             <b-button variant="info" @click="clearAll">清除</b-button>
-            <b-button variant="danger">批量删除</b-button>
+            <b-button
+                variant="danger"
+                @click="
+                    deleteResidents(
+                        selected.map((i) => {
+                            return i.id;
+                        })
+                    )
+                "
+                >批量删除</b-button
+            >
         </b-button-group>
+
+        <!-- 停车位管理 -->
+        <b-modal
+            :title="`住户${parkingSpotUsername}的停车位管理`"
+            v-model="parkingManageShow"
+        >
+            <b-input-group>
+                <b-input-group-prepend>
+                    <b-button
+                        variant="outline-info"
+                        @click="addParkingSpotUser(parkingSpotUsername)"
+                        >增加</b-button
+                    >
+                </b-input-group-prepend>
+                <b-input-group-perpend>
+                    <b-form-input
+                        type="text"
+                        placeholder="车位号"
+                        v-model="parkingSpotNumber"
+                    ></b-form-input>
+                </b-input-group-perpend>
+                <b-input-group-perpend>
+                    <b-form-input
+                        type="text"
+                        placeholder="车牌号"
+                        v-model="license"
+                    ></b-form-input>
+                </b-input-group-perpend>
+            </b-input-group>
+            <b-table
+                :fields="['id', 'parking_spot_number', 'license', 'actions']"
+                :items="parkingSpots"
+            ></b-table>
+        </b-modal>
     </div>
 </template>
 
 <script>
 export default {
     name: "ResidentManage",
+    props: ["alerter"],
     data: function () {
         return {
             resident_table: [],
@@ -107,6 +161,12 @@ export default {
             modalTitle: "",
             modalShow: false,
             dismissCountDown: 0,
+            selected: [],
+            parkingSpots: [],
+            parkingManageShow: false,
+            parkingSpotUsername: "",
+            license: "",
+            parkingSpotNumber: "",
         };
     },
     methods: {
@@ -119,18 +179,14 @@ export default {
                     token: this.$cookies.get("token"),
                 },
             }).then((response) => {
+                console.log(this.alerter);
                 let data = response.data;
                 if (data.success) {
                     this.resident_table = data.residents;
                 } else {
-                    this.alert("错误", data.info);
+                    this.alerter("错误", data.info);
                 }
             });
-        },
-        alert: function (title, info) {
-            this.modal = title;
-            this.modalInfo = info;
-            this.modalShow = true;
         },
         show_info: function () {
             this.dismissCountDown = 3;
@@ -139,7 +195,6 @@ export default {
             this.deleteResidents([id]);
         },
         deleteResidents: function (ids) {
-            console.log(ids);
             this.$axios({
                 method: "post",
                 url: this.serverURL + "property/delete_residents",
@@ -151,7 +206,7 @@ export default {
             }).then((response) => {
                 let data = response.data;
                 if (!data.success) {
-                    this.alert("错误", data.info);
+                    this.alerter("错误", data.info);
                 } else {
                     this.refreshTable();
                 }
@@ -183,9 +238,53 @@ export default {
             }).then((response) => {
                 let data = response.data;
                 if (!data.success) {
-                    this.alert("错误", data.info);
+                    this.alerter("错误", data.info);
                 } else {
                     this.refreshTable();
+                }
+            });
+        },
+        onRowSelected: function (items) {
+            this.selected = items;
+        },
+        parkingManage: function (manageUsername) {
+            this.parkingSpotUsername = manageUsername;
+            this.getAllParkingSpot(manageUsername);
+            this.parkingManageShow = true;
+        },
+        getAllParkingSpot: function (username) {
+            this.$axios({
+                method: "post",
+                url: this.serverURL + "property/get_parking_spot",
+                data: {
+                    username,
+                    token: this.$cookies.get("token"),
+                },
+            }).then((response) => {
+                let data = response.data;
+                if (data.success) {
+                    this.parkingSpots = data.parking_spot;
+                } else {
+                    this.alerter("错误", data.info);
+                }
+            });
+        },
+        addParkingSpotUser(username) {
+            this.$axios({
+                url: this.serverURL + "property/add_parking_spot_user",
+                method: "post",
+                data: {
+                    username,
+                    token: this.$cookies.get("token"),
+                    parking_spot_number: this.parkingSpotNumber,
+                    license: this.license,
+                },
+            }).then((response) => {
+                let data = response.data;
+                if (data.success) {
+                    this.getAllParkingSpot(this.parkingSpotUsername);
+                } else {
+                    this.alerter("错误", data.info);
                 }
             });
         },
@@ -200,6 +299,8 @@ export default {
     },
 };
 </script>
-
 <style scoped>
+.resident-table button {
+    margin-left: 3px;
+}
 </style>
