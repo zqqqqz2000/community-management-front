@@ -8,6 +8,7 @@ import HousegManage from './components/resident_manage/HouseManage'
 import MaintenanceManage from './components/resident_manage/MaintenanceManage'
 import PersonalInformation from './components/resident_manage/PersonalInformation'
 import PropertyManage from './components/property_manage/PropertyManage'
+import ParkingSpotManage from './components/property_manage/ParkingSpotManage'
 import VueRouter from 'vue-router'
 import axios from 'axios'
 import VueCookies from 'vue-cookies'
@@ -81,6 +82,13 @@ const routes = [
         component: ResidentMemberManage,
         meta: {
           title: '住户管理'
+        }
+      },
+      {
+        path: 'parking-spot-manage',
+        component: ParkingSpotManage,
+        meta: {
+          title: '停车位管理'
         }
       }
     ]

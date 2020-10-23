@@ -140,7 +140,17 @@
             <b-table
                 :fields="['id', 'parking_spot_number', 'license', 'actions']"
                 :items="parkingSpots"
-            ></b-table>
+            >
+                <template #cell(actions)="row">
+                    <b-button
+                        variant="danger"
+                        size="sm"
+                        @click="deleteParkingSpot(row.item.id)"
+                    >
+                        &#128711;</b-button
+                    >
+                </template>
+            </b-table>
         </b-modal>
     </div>
 </template>
@@ -278,6 +288,23 @@ export default {
                     token: this.$cookies.get("token"),
                     parking_spot_number: this.parkingSpotNumber,
                     license: this.license,
+                },
+            }).then((response) => {
+                let data = response.data;
+                if (data.success) {
+                    this.getAllParkingSpot(this.parkingSpotUsername);
+                } else {
+                    this.alerter("错误", data.info);
+                }
+            });
+        },
+        deleteParkingSpot(id) {
+            this.$axios({
+                url: this.serverURL + "property/delete_parking_spot_pr",
+                method: "post",
+                data: {
+                    token: this.$cookies.get("token"),
+                    id,
                 },
             }).then((response) => {
                 let data = response.data;

@@ -4,7 +4,7 @@
         <div class="center-container">
             <router-view :alerter="alert"></router-view>
         </div>
-        <b-modal v-model="modalShow" :title="modalTitle">
+        <b-modal v-model="modalShow" :title="modal">
             {{ modalInfo }}
         </b-modal>
     </div>
@@ -34,6 +34,11 @@ export default {
                                 title: "住户成员管理",
                                 key: "parking_manage",
                                 url: "/property-manage/resident-member-manage",
+                            },
+                            {
+                                title: "车位管理",
+                                key: "parking_spot_manage",
+                                url: "/property-manage/parking-spot-manage",
                             },
                             {
                                 title: "房屋管理",
