@@ -7,6 +7,7 @@
         <b-table
             :items="parkingSpots"
             :fields="['id', 'parking_spot_number', 'license', 'actions']"
+            class="spot-table"
         >
             <template #cell(actions)="row">
                 <b-button
@@ -14,8 +15,15 @@
                     size="sm"
                     @click="deleteParkingSpot(row.item.id)"
                 >
-                    &#128711;</b-button
+                    &#128711;
+                </b-button>
+                <b-button
+                    variant="success"
+                    size="sm"
+                    @click="clickHis(row.item.id)"
                 >
+                    &#128467;
+                </b-button>
             </template>
         </b-table>
         <b-modal
@@ -48,9 +56,40 @@
                 ></b-form-input>
             </b-form-group>
         </b-modal>
-        <b-button variant="success" @click="addSpotModalShow = true"
-            >增加</b-button
-        >
+        <b-modal title="收费" v-model="new_pay" @ok="addParkingSpotPay()">
+            <b-form-group label="收费金额:">
+                <b-form-input
+                    v-model="price"
+                    type="text"
+                    required
+                    placeholder="金额"
+                >
+                </b-form-input>
+            </b-form-group>
+            <b-form-group label="生效日期:">
+                <b-calendar v-model="date"></b-calendar>
+            </b-form-group>
+        </b-modal>
+        <b-modal title="收费历史" v-model="hisShow" size="lg">
+            <b-table
+                :fields="[
+                    'id',
+                    'date',
+                    'pay_date',
+                    'pay_amount',
+                    'pay_username',
+                ]"
+                :items="payHis"
+            ></b-table>
+        </b-modal>
+        <b-button-group>
+            <b-button variant="success" @click="addSpotModalShow = true">
+                增加
+            </b-button>
+            <b-button variant="warning" @click="new_pay = true">
+                统一收费
+            </b-button>
+        </b-button-group>
     </div>
 </template>
 
@@ -65,6 +104,12 @@ export default {
             addSpotModalShow: false,
             license: "",
             parkingSpotNumber: "",
+            date: "",
+            new_pay: false,
+            price: "",
+            selectBtnParkingSpotId: "",
+            hisShow: false,
+            payHis: [],
         };
     },
     methods: {
@@ -122,6 +167,48 @@ export default {
                 }
             });
         },
+        addParkingSpotPay: function () {
+            this.$axios({
+                url: this.serverURL + "property/add_parking_spot_pay",
+                method: "post",
+                withCredentials: true,
+                data: {
+                    token: this.$cookies.get("token"),
+                    price: this.price,
+                    date: this.date,
+                },
+            }).then((response) => {
+                let data = response.data;
+                if (!data.success) {
+                    this.alerter("错误", data.info);
+                } else {
+                    this.alerter("成功", "成功发布本次收费");
+                }
+            });
+        },
+        clickHis: function (id) {
+            this.selectBtnParkingSpotId = id;
+            this.hisShow = true;
+            this.hisTableRefresh();
+        },
+        hisTableRefresh() {
+            this.$axios({
+                url: this.serverURL + "property/get_parking_spot_pays",
+                method: "post",
+                withCredentials: true,
+                data: {
+                    token: this.$cookies.get("token"),
+                    pid: this.selectBtnParkingSpotId,
+                },
+            }).then((response) => {
+                let data = response.data;
+                if (!data.success) {
+                    this.alerter("错误", data.info);
+                } else {
+                    this.payHis = data.pay_his;
+                }
+            });
+        },
     },
     created: function () {
         this.refreshParkingSpot();
@@ -135,4 +222,7 @@ export default {
 </script>
 
 <style scoped>
+.spot-table button {
+    margin-left: 3px;
+}
 </style>
