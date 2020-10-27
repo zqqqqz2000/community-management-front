@@ -43,7 +43,7 @@ export default {
                             {
                                 title: "房屋管理",
                                 key: "house_manage",
-                                url: "/resident-manage/house-manage",
+                                url: "/property-manage/house-manage",
                             },
                             {
                                 title: "报修",
