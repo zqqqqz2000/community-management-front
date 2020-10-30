@@ -18,7 +18,7 @@
                 <b-button
                     variant="danger"
                     size="sm"
-                    @click="deleteParkingSpot(row.item.id)"
+                    @click="deleteHouses([row.item.id])"
                 >
                     &#128711;
                 </b-button>
@@ -113,6 +113,24 @@ export default {
                     this.alerter("错误", data.info);
                 } else {
                     this.alerter("成功", "添加房屋成功");
+                    this.refreshHouses();
+                }
+            });
+        },
+        deleteHouses: function (ids) {
+            this.$axios({
+                url: this.serverURL + "property/delete_houses",
+                method: "post",
+                withCredentials: true,
+                data: {
+                    token: this.$cookies.get("token"),
+                    houses: ids,
+                },
+            }).then((response) => {
+                let data = response.data;
+                if (!data.success) {
+                    this.alerter("错误", data.info);
+                } else {
                     this.refreshHouses();
                 }
             });

@@ -34,7 +34,12 @@
                     @click="parkingManage(row.item.username)"
                     >&#80;</b-button
                 >
-                <b-button size="sm" variant="success">&#127968;</b-button>
+                <b-button
+                    size="sm"
+                    variant="success"
+                    @click="houseManage(row.item.id)"
+                    >&#127968;</b-button
+                >
             </template>
         </b-table>
         <!-- 新增住户 -->
@@ -152,6 +157,32 @@
                 </template>
             </b-table>
         </b-modal>
+        <!-- 房屋管理 -->
+        <b-modal title="房屋管理" v-model="houseManageShow">
+            <b-input-group>
+                <b-input-group-prepend>
+                    <b-button
+                        variant="outline-info"
+                        @click="addRH(parkingSpotUsername)"
+                        >增加</b-button
+                    >
+                </b-input-group-prepend>
+                <b-input-group-perpend>
+                    <b-form-input
+                        type="text"
+                        placeholder="楼号"
+                        v-model="buildingNumber"
+                    ></b-form-input>
+                </b-input-group-perpend>
+                <b-input-group-perpend>
+                    <b-form-input
+                        type="text"
+                        placeholder="房号"
+                        v-model="roomNumber"
+                    ></b-form-input>
+                </b-input-group-perpend>
+            </b-input-group>
+        </b-modal>
     </div>
 </template>
 
@@ -161,6 +192,7 @@ export default {
     props: ["alerter"],
     data: function () {
         return {
+            houseManageShow: false,
             resident_table: [],
             username: "",
             password: "",
@@ -177,6 +209,9 @@ export default {
             parkingSpotUsername: "",
             license: "",
             parkingSpotNumber: "",
+            currentHouseId: "",
+            buildingNumber: null,
+            roomNumber: null,
         };
     },
     methods: {
@@ -197,6 +232,10 @@ export default {
                     this.alerter("错误", data.info);
                 }
             });
+        },
+        houseManage: function (id) {
+            this.houseManageShow = true;
+            this.currentHouseId = id;
         },
         show_info: function () {
             this.dismissCountDown = 3;
@@ -310,6 +349,25 @@ export default {
                 let data = response.data;
                 if (data.success) {
                     this.getAllParkingSpot(this.parkingSpotUsername);
+                } else {
+                    this.alerter("错误", data.info);
+                }
+            });
+        },
+        addRH(id) {
+            this.$axios({
+                url: this.serverURL + "property/add_rh",
+                method: "post",
+                data: {
+                    token: this.$cookies.get("token"),
+                    id,
+                    building_number: this.buildingNumber,
+                    room_number: this.roomNumber,
+                },
+            }).then((response) => {
+                let data = response.data;
+                if (data.success) {
+                    this.alerter("成功", "为该住户增加房屋成功");
                 } else {
                     this.alerter("错误", data.info);
                 }
