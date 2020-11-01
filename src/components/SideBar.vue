@@ -67,7 +67,7 @@ export default {
     width: 220px;
     height: 100vh;
     background-color: #1c2b36;
-    z-index: 9999;
+    z-index: 0;
     padding-top: 20px;
 }
 #menu ul {

@@ -1,12 +1,12 @@
 <template>
     <div>
+        <b-modal v-model="modalShow" :title="modal">
+            {{ modalInfo }}
+        </b-modal>
         <side-bar :child-tree="menu" />
         <div class="center-container">
             <router-view :alerter="alert"></router-view>
         </div>
-        <b-modal v-model="modalShow" :title="modal">
-            {{ modalInfo }}
-        </b-modal>
     </div>
 </template>
 

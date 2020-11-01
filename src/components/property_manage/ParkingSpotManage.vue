@@ -56,7 +56,7 @@
                 ></b-form-input>
             </b-form-group>
         </b-modal>
-        <b-modal title="收费" v-model="new_pay" @ok="addParkingSpotPay()">
+        <b-modal title="收费" v-model="newPay" @ok="addParkingSpotPay()">
             <b-form-group label="收费金额:">
                 <b-form-input
                     v-model="price"
@@ -86,7 +86,7 @@
             <b-button variant="success" @click="addSpotModalShow = true">
                 增加
             </b-button>
-            <b-button variant="warning" @click="new_pay = true">
+            <b-button variant="warning" @click="newPay = true">
                 统一收费
             </b-button>
         </b-button-group>
@@ -105,7 +105,7 @@ export default {
             license: "",
             parkingSpotNumber: "",
             date: "",
-            new_pay: false,
+            newPay: false,
             price: "",
             selectBtnParkingSpotId: "",
             hisShow: false,

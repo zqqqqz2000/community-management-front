@@ -22,9 +22,17 @@
                 >
                     &#128711;
                 </b-button>
+                <b-button variant="success" size="sm"> &#128467; </b-button>
             </template>
         </b-table>
-        <b-button variant="success" @click="addShow = true">增加</b-button>
+        <b-button-group>
+            <b-button variant="success" @click="addShow = true">
+                增加
+            </b-button>
+            <b-button variant="warning" @click="newPay = true">
+                统一收费
+            </b-button>
+        </b-button-group>
         <b-modal title="增加房屋" v-model="addShow" @ok="addHouse()">
             <b-form-group label="楼号:" description="小区内楼房号">
                 <b-form-input
@@ -59,6 +67,20 @@
                 ></b-form-input>
             </b-form-group>
         </b-modal>
+        <b-modal v-model="newPay" title="物业费征收">
+            <b-form-group label="收费金额:">
+                <b-form-input
+                    v-model="price"
+                    type="text"
+                    required
+                    placeholder="金额"
+                >
+                </b-form-input>
+            </b-form-group>
+            <b-form-group label="生效日期:">
+                <b-calendar v-model="date"></b-calendar>
+            </b-form-group>
+        </b-modal>
     </div>
 </template>
 
@@ -75,6 +97,9 @@ export default {
             roomNumber: "",
             area: "",
             familySize: "",
+            newPay: false,
+            date: "",
+            price: "",
         };
     },
     methods: {
