@@ -67,7 +67,7 @@
                 ></b-form-input>
             </b-form-group>
         </b-modal>
-        <b-modal v-model="newPay" title="物业费征收">
+        <b-modal v-model="newPay" title="物业费征收" @ok="propertyFeeAdd()">
             <b-form-group label="收费金额:">
                 <b-form-input
                     v-model="price"
@@ -157,6 +157,25 @@ export default {
                     this.alerter("错误", data.info);
                 } else {
                     this.refreshHouses();
+                }
+            });
+        },
+        propertyFeeAdd: function () {
+            this.$axios({
+                url: this.serverURL + "property/add_property_fee",
+                method: "post",
+                withCredentials: true,
+                data: {
+                    token: this.$cookies.get("token"),
+                    date: this.date,
+                    price: this.price,
+                },
+            }).then((response) => {
+                let data = response.data;
+                if (!data.success) {
+                    this.alerter("错误", data.info);
+                } else {
+                    this.alerter("成功", "发布本次收费成功");
                 }
             });
         },
