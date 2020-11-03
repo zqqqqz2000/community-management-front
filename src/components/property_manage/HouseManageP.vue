@@ -22,7 +22,13 @@
                 >
                     &#128711;
                 </b-button>
-                <b-button variant="success" size="sm"> &#128467; </b-button>
+                <b-button
+                    variant="success"
+                    size="sm"
+                    @click="propertyFeeShowRefreshFunc(row.item.id)"
+                >
+                    &#128467;
+                </b-button>
             </template>
         </b-table>
         <b-button-group>
@@ -81,6 +87,20 @@
                 <b-calendar v-model="date"></b-calendar>
             </b-form-group>
         </b-modal>
+        <b-modal title="收费记录" v-model="propertyFeeShow" size="lg">
+            <b-table
+                :items="propertyFeeHis"
+                :fields="[
+                    'id',
+                    'building_number',
+                    'room_number',
+                    'date',
+                    'pay_date',
+                    'is_pay',
+                    'order_number',
+                ]"
+            ></b-table>
+        </b-modal>
     </div>
 </template>
 
@@ -100,6 +120,8 @@ export default {
             newPay: false,
             date: "",
             price: "",
+            propertyFeeShow: false,
+            propertyFeeHis: [],
         };
     },
     methods: {
@@ -176,6 +198,25 @@ export default {
                     this.alerter("错误", data.info);
                 } else {
                     this.alerter("成功", "发布本次收费成功");
+                }
+            });
+        },
+        propertyFeeShowRefreshFunc: function (hid) {
+            this.propertyFeeShow = true;
+            this.$axios({
+                url: this.serverURL + "property/get_property_fee",
+                method: "post",
+                withCredentials: true,
+                data: {
+                    token: this.$cookies.get("token"),
+                    hid,
+                },
+            }).then((response) => {
+                let data = response.data;
+                if (!data.success) {
+                    this.alerter("错误", data.info);
+                } else {
+                    this.propertyFeeHis = data.property_fees;
                 }
             });
         },

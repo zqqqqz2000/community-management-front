@@ -158,12 +158,10 @@
             </b-table>
         </b-modal>
         <!-- 房屋管理 -->
-        <b-modal title="房屋管理" v-model="houseManageShow">
+        <b-modal title="房屋管理" v-model="houseManageShow" size="lg">
             <b-input-group>
                 <b-input-group-prepend>
-                    <b-button
-                        variant="outline-info"
-                        @click="addRH(parkingSpotUsername)"
+                    <b-button variant="outline-info" @click="addRH(currentRId)"
                         >增加</b-button
                     >
                 </b-input-group-prepend>
@@ -182,6 +180,24 @@
                     ></b-form-input>
                 </b-input-group-perpend>
             </b-input-group>
+            <b-table
+                :items="userHouses"
+                :fields="[
+                    'id',
+                    'building_number',
+                    'room_number',
+                    'area',
+                    'family_size',
+                    'maintenance_balance',
+                    'actions',
+                ]"
+            >
+                <template #cell(actions)="row">
+                    <b-button variant="danger" size="sm" @click="row.item.id">
+                        &#128711;</b-button
+                    >
+                </template>
+            </b-table>
         </b-modal>
     </div>
 </template>
@@ -209,9 +225,10 @@ export default {
             parkingSpotUsername: "",
             license: "",
             parkingSpotNumber: "",
-            currentHouseId: "",
+            currentRId: "",
             buildingNumber: null,
             roomNumber: null,
+            userHouses: [],
         };
     },
     methods: {
@@ -235,7 +252,8 @@ export default {
         },
         houseManage: function (id) {
             this.houseManageShow = true;
-            this.currentHouseId = id;
+            this.currentRId = id;
+            this.getResHouses(id);
         },
         show_info: function () {
             this.dismissCountDown = 3;
@@ -354,13 +372,13 @@ export default {
                 }
             });
         },
-        addRH(id) {
+        addRH(rid) {
             this.$axios({
                 url: this.serverURL + "property/add_rh",
                 method: "post",
                 data: {
                     token: this.$cookies.get("token"),
-                    id,
+                    rid,
                     building_number: this.buildingNumber,
                     room_number: this.roomNumber,
                 },
@@ -368,6 +386,24 @@ export default {
                 let data = response.data;
                 if (data.success) {
                     this.alerter("成功", "为该住户增加房屋成功");
+                } else {
+                    this.alerter("错误", data.info);
+                }
+            });
+            this.getResHouses(this.currentRId);
+        },
+        getResHouses(rid) {
+            this.$axios({
+                url: this.serverURL + "property/get_get_house_from_res",
+                method: "post",
+                data: {
+                    token: this.$cookies.get("token"),
+                    rid,
+                },
+            }).then((response) => {
+                let data = response.data;
+                if (data.success) {
+                    this.userHouses = data.houses;
                 } else {
                     this.alerter("错误", data.info);
                 }

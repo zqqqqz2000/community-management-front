@@ -47,6 +47,7 @@
                             'is_pay',
                             'actions',
                         ]"
+                        sticky-header="calc(100vh - 270px)"
                     >
                         <template v-slot:cell(actions)="data">
                             <b-button
