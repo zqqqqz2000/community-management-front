@@ -9,19 +9,19 @@
                 <b-card header-tag="header">
                     <template #header>
                         房产列表
-                        <b-badge>{{ unpaiedNumber }}</b-badge>
+                        <b-badge>{{ 1 }}</b-badge>
                     </template>
                     <b-list-group style="max-width: 300px">
                         <b-list-group-item
                             class="d-flex align-items-center"
-                            v-for="parkingSpot in parkingSpots"
-                            :key="parkingSpot"
+                            v-for="house in houses"
+                            :key="house"
                         >
                             <span class="mr-auto">
                                 楼号:
-                                {{ parkingSpot.parking_spot_number }}
+                                {{ house.building_number }}
                                 <b-badge variant="primary">
-                                    {{ parkingSpot.license }}
+                                    {{ house.room_number }}
                                 </b-badge>
                             </span>
                         </b-list-group-item>
@@ -71,8 +71,35 @@ export default {
     name: "HouseManage",
     data: function () {
         return {
-            houseNumber: 0,
+            houses: [],
         };
+    },
+    methods: {
+        getHouses: function () {
+            this.$axios({
+                url: this.serverURL + "resident/get_houses",
+                method: "post",
+                withCredentials: true,
+                data: {
+                    token: this.$cookies.get("token"),
+                },
+            }).then((response) => {
+                let data = response.data;
+                if (data.success) {
+                    this.houses = data.houses;
+                } else {
+                    this.alerter("错误", data.info);
+                }
+            });
+        },
+    },
+    computed: {
+        houseNumber: function () {
+            return this.houses.length;
+        },
+    },
+    created: function () {
+        this.getHouses();
     },
 };
 </script>

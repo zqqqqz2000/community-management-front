@@ -193,7 +193,11 @@
                 ]"
             >
                 <template #cell(actions)="row">
-                    <b-button variant="danger" size="sm" @click="row.item.id">
+                    <b-button
+                        variant="danger"
+                        size="sm"
+                        @click="deleteHouse(row.item.id)"
+                    >
                         &#128711;</b-button
                     >
                 </template>
@@ -386,11 +390,11 @@ export default {
                 let data = response.data;
                 if (data.success) {
                     this.alerter("成功", "为该住户增加房屋成功");
+                    this.getResHouses(this.currentRId);
                 } else {
                     this.alerter("错误", data.info);
                 }
             });
-            this.getResHouses(this.currentRId);
         },
         getResHouses(rid) {
             this.$axios({
@@ -404,6 +408,23 @@ export default {
                 let data = response.data;
                 if (data.success) {
                     this.userHouses = data.houses;
+                } else {
+                    this.alerter("错误", data.info);
+                }
+            });
+        },
+        deleteHouse(rhid) {
+            this.$axios({
+                url: this.serverURL + "property/delete_rh",
+                method: "post",
+                data: {
+                    token: this.$cookies.get("token"),
+                    rhid,
+                },
+            }).then((response) => {
+                let data = response.data;
+                if (data.success) {
+                    this.getResHouses(this.currentRId);
                 } else {
                     this.alerter("错误", data.info);
                 }

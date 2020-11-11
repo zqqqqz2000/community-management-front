@@ -113,7 +113,7 @@ export default {
         },
         pay: function (id) {
             this.$axios({
-                url: this.serverURL + "resident/pay",
+                url: this.serverURL + "resident/pay_parking_spot",
                 method: "post",
                 withCredentials: true,
                 data: {

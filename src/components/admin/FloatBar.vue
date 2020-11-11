@@ -42,6 +42,7 @@
                             type="text"
                             placeholder="请输入用户名"
                             v-model="username"
+                            autocomplete="!off"
                         />
                     </div>
                     <div class="input-area">
@@ -51,6 +52,7 @@
                             type="password"
                             placeholder="请输入密码"
                             v-model="password"
+                            autocomplete="!off"
                         />
                     </div>
                     <b-button
@@ -248,5 +250,22 @@ input:focus::-webkit-input-placeholder {
     color: white;
     position: relative;
     transform: translateY(-1em) scale(0.9);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    border: 0;
+    border-bottom: white 1px solid;
+    outline: none;
+    transition: 0.3s;
+    line-height: 3em;
+    transition: background-color 5000s ease-in-out 0s;
 }
 </style>
