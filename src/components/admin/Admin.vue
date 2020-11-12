@@ -21,14 +21,14 @@
                 :btnStyle="{
                     color: 'rgba(0,0,0,.2)',
                     width: '220px',
-                    height: '60px',
+                    height: '40px',
                     border: '3px solid rgba(0,0,0,.1)',
                     'border-radius': 0,
                 }"
                 :btnHoverStyle="{
                     color: '#ed2553',
                     width: '220px',
-                    height: '60px',
+                    height: '40px',
                     border: '3px solid #ed2553',
                     'border-radius': 0,
                 }"
@@ -61,16 +61,17 @@
                 :btnStyle="{
                     background: '#fff',
                     width: '220px',
-                    height: '60px',
+                    height: '40px',
                     border: '0',
                     color: '#ed2553',
                     'border-radius': 0,
                 }"
                 :btnHoverStyle="{
-                    color: '#ed2553',
+                    background: '#fff',
                     width: '220px',
-                    height: '60px',
-                    border: '3px solid #ed2553',
+                    height: '40px',
+                    border: '0',
+                    color: '#ed2553',
                     'border-radius': 0,
                 }"
             >
@@ -243,11 +244,21 @@ export default {
             }
         },
     },
+    beforeCreate: function () {
+        document
+            .querySelector("body")
+            .setAttribute("style", "margin: 0; background-color: #1e1e1e");
+    },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.pop-layer {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+}
 .text-center {
     width: 500px;
     height: 500px;

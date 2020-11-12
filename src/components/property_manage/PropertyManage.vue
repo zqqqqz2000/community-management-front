@@ -79,6 +79,11 @@ export default {
             this.modalShow = true;
         },
     },
+    beforeCreate: function () {
+        document
+            .querySelector("body")
+            .setAttribute("style", "margin: 0; background-color: #f0f3f4");
+    },
 };
 </script>
 

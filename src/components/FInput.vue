@@ -9,7 +9,7 @@
                 {{ placeholder }}
             </label>
             <input
-                type="text"
+                :type="type"
                 :id="name + randIdFoot"
                 :value="value"
                 @input="$emit('input', $event.target.value)"
@@ -25,7 +25,7 @@
 <script>
 export default {
     name: "FInput",
-    props: ["value", "placeholder", "name", "activeColor", "color"],
+    props: ["value", "placeholder", "name", "activeColor", "color", "type"],
     methods: {
         randomNum(minNum, maxNum) {
             return parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10);
