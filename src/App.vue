@@ -10,7 +10,7 @@ export default {
     beforeCreate: function () {
         document
             .querySelector("body")
-            .setAttribute("style", "margin: 0; background-color: #f0f3f4");
+            .setAttribute("style", "margin: 0; background-color: #1e1e1e");
     },
 };
 </script>

@@ -9,7 +9,7 @@
                 <b-card header-tag="header">
                     <template #header>
                         房产列表
-                        <b-badge>{{ 1 }}</b-badge>
+                        <b-badge>{{ unpaynum }}</b-badge>
                     </template>
                     <b-list-group style="max-width: 300px">
                         <b-list-group-item
@@ -37,14 +37,15 @@
                     <b-table
                         striped
                         hover
-                        :items="table_liences"
+                        :items="propertyFees"
                         :fields="[
                             'id',
+                            'building_number',
+                            'room_number',
                             'date',
                             'pay_date',
-                            'pay_amount',
-                            'handle_id',
                             'is_pay',
+                            'order_number',
                             'actions',
                         ]"
                         sticky-header="calc(100vh - 270px)"
@@ -52,7 +53,7 @@
                         <template v-slot:cell(actions)="data">
                             <b-button
                                 size="sm"
-                                :disabled="data.item.is_pay !== '未缴费'"
+                                :disabled="data.item.is_pay !== '未支付'"
                                 variant="primary"
                                 @click="pay(data.item.id)"
                             >
@@ -69,9 +70,11 @@
 <script>
 export default {
     name: "HouseManage",
+    props: ["alerter"],
     data: function () {
         return {
             houses: [],
+            propertyFees: [],
         };
     },
     methods: {
@@ -92,14 +95,57 @@ export default {
                 }
             });
         },
+        getPropertyFee: function () {
+            this.$axios({
+                url: this.serverURL + "resident/get_property_fee",
+                method: "post",
+                withCredentials: true,
+                data: {
+                    token: this.$cookies.get("token"),
+                },
+            }).then((response) => {
+                let data = response.data;
+                if (data.success) {
+                    this.propertyFees = data.property_fees;
+                } else {
+                    this.alerter("错误", data.info);
+                }
+            });
+        },
+        pay: function (pid) {
+            this.$axios({
+                url: this.serverURL + "resident/pay_property_fee",
+                method: "post",
+                withCredentials: true,
+                data: {
+                    token: this.$cookies.get("token"),
+                    pid,
+                },
+            }).then((response) => {
+                let data = response.data;
+                if (data.success) {
+                    this.getPropertyFee();
+                } else {
+                    this.alerter("错误", data.info);
+                }
+            });
+        },
     },
     computed: {
         houseNumber: function () {
             return this.houses.length;
         },
+        unpaynum: function () {
+            let count = 0;
+            this.propertyFees.map((i) => {
+                i.is_pay === "未支付" ? (count += 1) : 0;
+            });
+            return count;
+        },
     },
     created: function () {
         this.getHouses();
+        this.getPropertyFee();
     },
 };
 </script>

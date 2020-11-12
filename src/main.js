@@ -16,6 +16,7 @@ import VueCookies from 'vue-cookies'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import VueAnime from 'vue-animejs';
 
 axios.defaults.withCredentials = true;
 Vue.config.productionTip = false
@@ -23,6 +24,7 @@ Vue.use(VueRouter)
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.use(VueCookies)
+Vue.use(VueAnime)
 Vue.prototype.$axios = axios
 Vue.prototype.serverURL = 'http://127.0.0.1:5000/'
 
