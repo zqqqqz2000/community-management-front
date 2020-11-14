@@ -1,0 +1,335 @@
+{
+    "extension": "linecount",
+    "version": "0.1.7",
+    "workspace": "d:\\project\\vue\\community-management",
+    "linecount": [
+        {
+            "version": "0.1.7",
+            "counttime": "2020-11-03 17:55:19",
+            "filesum": 25,
+            "codesum": 14518,
+            "commentsum": 2,
+            "blanksum": 65,
+            "filelist": [
+                {
+                    "blank": 4,
+                    "code": 19,
+                    "comment": 0,
+                    "filename": ".gitignore"
+                },
+                {
+                    "blank": 1,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "babel.config.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 12445,
+                    "comment": 0,
+                    "filename": "package-lock.json"
+                },
+                {
+                    "blank": 2,
+                    "code": 46,
+                    "comment": 0,
+                    "filename": "package.json"
+                },
+                {
+                    "filename": "public\\favicon.ico",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 16,
+                    "comment": 1,
+                    "filename": "public\\index.html"
+                },
+                {
+                    "blank": 5,
+                    "code": 19,
+                    "comment": 1,
+                    "filename": "README.md"
+                },
+                {
+                    "blank": 2,
+                    "code": 21,
+                    "comment": 0,
+                    "filename": "src\\App.vue"
+                },
+                {
+                    "filename": "src\\assets\\admin\\background.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\assets\\admin\\bg1.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\assets\\logo.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 4,
+                    "code": 100,
+                    "comment": 0,
+                    "filename": "src\\components\\admin\\Admin.vue"
+                },
+                {
+                    "blank": 17,
+                    "code": 227,
+                    "comment": 0,
+                    "filename": "src\\components\\admin\\FloatBar.vue"
+                },
+                {
+                    "blank": 3,
+                    "code": 216,
+                    "comment": 0,
+                    "filename": "src\\components\\property_manage\\HouseManageP.vue"
+                },
+                {
+                    "blank": 3,
+                    "code": 219,
+                    "comment": 0,
+                    "filename": "src\\components\\property_manage\\ParkingSpotManage.vue"
+                },
+                {
+                    "blank": 2,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "src\\components\\property_manage\\PersonalInformation.vue"
+                },
+                {
+                    "blank": 2,
+                    "code": 89,
+                    "comment": 0,
+                    "filename": "src\\components\\property_manage\\PropertyManage.vue"
+                },
+                {
+                    "blank": 3,
+                    "code": 403,
+                    "comment": 0,
+                    "filename": "src\\components\\property_manage\\ResidentMemberManage.vue"
+                },
+                {
+                    "blank": 2,
+                    "code": 71,
+                    "comment": 0,
+                    "filename": "src\\components\\resident_manage\\HouseManage.vue"
+                },
+                {
+                    "blank": 2,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "src\\components\\resident_manage\\MaintenanceManage.vue"
+                },
+                {
+                    "blank": 2,
+                    "code": 146,
+                    "comment": 0,
+                    "filename": "src\\components\\resident_manage\\ParkingManage.vue"
+                },
+                {
+                    "blank": 2,
+                    "code": 119,
+                    "comment": 0,
+                    "filename": "src\\components\\resident_manage\\PersonalInformation.vue"
+                },
+                {
+                    "blank": 2,
+                    "code": 84,
+                    "comment": 0,
+                    "filename": "src\\components\\resident_manage\\ResidentManage.vue"
+                },
+                {
+                    "blank": 2,
+                    "code": 139,
+                    "comment": 0,
+                    "filename": "src\\components\\SideBar.vue"
+                },
+                {
+                    "blank": 5,
+                    "code": 115,
+                    "comment": 0,
+                    "filename": "src\\main.js"
+                }
+            ]
+        },
+        {
+            "version": "0.1.7",
+            "counttime": "2020-11-03 17:56:44",
+            "filesum": 25,
+            "codesum": 14518,
+            "commentsum": 2,
+            "blanksum": 65,
+            "filelist": [
+                {
+                    "blank": 4,
+                    "code": 19,
+                    "comment": 0,
+                    "filename": ".gitignore"
+                },
+                {
+                    "blank": 1,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "babel.config.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 12445,
+                    "comment": 0,
+                    "filename": "package-lock.json"
+                },
+                {
+                    "blank": 2,
+                    "code": 46,
+                    "comment": 0,
+                    "filename": "package.json"
+                },
+                {
+                    "filename": "public\\favicon.ico",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 16,
+                    "comment": 1,
+                    "filename": "public\\index.html"
+                },
+                {
+                    "blank": 5,
+                    "code": 19,
+                    "comment": 1,
+                    "filename": "README.md"
+                },
+                {
+                    "blank": 2,
+                    "code": 21,
+                    "comment": 0,
+                    "filename": "src\\App.vue"
+                },
+                {
+                    "filename": "src\\assets\\admin\\background.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\assets\\admin\\bg1.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\assets\\logo.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 4,
+                    "code": 100,
+                    "comment": 0,
+                    "filename": "src\\components\\admin\\Admin.vue"
+                },
+                {
+                    "blank": 17,
+                    "code": 227,
+                    "comment": 0,
+                    "filename": "src\\components\\admin\\FloatBar.vue"
+                },
+                {
+                    "blank": 3,
+                    "code": 216,
+                    "comment": 0,
+                    "filename": "src\\components\\property_manage\\HouseManageP.vue"
+                },
+                {
+                    "blank": 3,
+                    "code": 219,
+                    "comment": 0,
+                    "filename": "src\\components\\property_manage\\ParkingSpotManage.vue"
+                },
+                {
+                    "blank": 2,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "src\\components\\property_manage\\PersonalInformation.vue"
+                },
+                {
+                    "blank": 2,
+                    "code": 89,
+                    "comment": 0,
+                    "filename": "src\\components\\property_manage\\PropertyManage.vue"
+                },
+                {
+                    "blank": 3,
+                    "code": 403,
+                    "comment": 0,
+                    "filename": "src\\components\\property_manage\\ResidentMemberManage.vue"
+                },
+                {
+                    "blank": 2,
+                    "code": 71,
+                    "comment": 0,
+                    "filename": "src\\components\\resident_manage\\HouseManage.vue"
+                },
+                {
+                    "blank": 2,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "src\\components\\resident_manage\\MaintenanceManage.vue"
+                },
+                {
+                    "blank": 2,
+                    "code": 146,
+                    "comment": 0,
+                    "filename": "src\\components\\resident_manage\\ParkingManage.vue"
+                },
+                {
+                    "blank": 2,
+                    "code": 119,
+                    "comment": 0,
+                    "filename": "src\\components\\resident_manage\\PersonalInformation.vue"
+                },
+                {
+                    "blank": 2,
+                    "code": 84,
+                    "comment": 0,
+                    "filename": "src\\components\\resident_manage\\ResidentManage.vue"
+                },
+                {
+                    "blank": 2,
+                    "code": 139,
+                    "comment": 0,
+                    "filename": "src\\components\\SideBar.vue"
+                },
+                {
+                    "blank": 5,
+                    "code": 115,
+                    "comment": 0,
+                    "filename": "src\\main.js"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,37 @@
+===============================================================================
+EXTENSION NAME : linecount
+EXTENSION VERSION : 0.1.7
+-------------------------------------------------------------------------------
+count time : 2020-11-03 17:55:19
+count workspace : d:\project\vue\community-management
+total files : 25
+total code lines : 14518
+total comment lines : 2
+total blank lines : 65
+
+.gitignore, code is 19, comment is 0, blank is 4.
+babel.config.js, code is 4, comment is 0, blank is 1.
+package-lock.json, code is 12445, comment is 0, blank is 0.
+package.json, code is 46, comment is 0, blank is 2.
+public\favicon.ico, it is a binary file.
+public\index.html, code is 16, comment is 1, blank is 0.
+README.md, code is 19, comment is 1, blank is 5.
+src\App.vue, code is 21, comment is 0, blank is 2.
+src\assets\admin\background.jpg, it is a binary file.
+src\assets\admin\bg1.jpg, it is a binary file.
+src\assets\logo.png, it is a binary file.
+src\components\admin\Admin.vue, code is 100, comment is 0, blank is 4.
+src\components\admin\FloatBar.vue, code is 227, comment is 0, blank is 17.
+src\components\property_manage\HouseManageP.vue, code is 216, comment is 0, blank is 3.
+src\components\property_manage\ParkingSpotManage.vue, code is 219, comment is 0, blank is 3.
+src\components\property_manage\PersonalInformation.vue, code is 10, comment is 0, blank is 2.
+src\components\property_manage\PropertyManage.vue, code is 89, comment is 0, blank is 2.
+src\components\property_manage\ResidentMemberManage.vue, code is 403, comment is 0, blank is 3.
+src\components\resident_manage\HouseManage.vue, code is 71, comment is 0, blank is 2.
+src\components\resident_manage\MaintenanceManage.vue, code is 10, comment is 0, blank is 2.
+src\components\resident_manage\ParkingManage.vue, code is 146, comment is 0, blank is 2.
+src\components\resident_manage\PersonalInformation.vue, code is 119, comment is 0, blank is 2.
+src\components\resident_manage\ResidentManage.vue, code is 84, comment is 0, blank is 2.
+src\components\SideBar.vue, code is 139, comment is 0, blank is 2.
+src\main.js, code is 115, comment is 0, blank is 5.
+===============================================================================

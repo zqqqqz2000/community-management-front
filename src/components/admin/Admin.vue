@@ -131,8 +131,8 @@ export default {
                     // 居中
                     .add({
                         targets: changerEle,
-                        left: "-=250",
-                        top: "+=140",
+                        translateX: -250,
+                        translateY: 140,
                         easing: "easeInOutQuad",
                         duration: 300,
                         "border-radius": "50%",
@@ -150,8 +150,8 @@ export default {
                     // 覆盖
                     .add({
                         targets: changerEle,
-                        left: "-=180px",
-                        top: "-=180px",
+                        translateX: -430,
+                        translateY: -40,
                         width: "500px",
                         height: "500px",
                         "line-height": "500px",
@@ -168,16 +168,16 @@ export default {
                         duration: 100,
                         width: "50px",
                         height: "50px",
-                        left: "+=225",
-                        top: "+=225",
+                        translateX: -205,
+                        translateY: 185,
                         "line-height": "50px",
                         easing: "easeInOutQuad",
                     })
                     // 向上移动
                     .add({
                         targets: changerEle,
-                        top: "-=215",
-                        left: "+=215",
+                        translateX: 12,
+                        translateY: -31,
                         easing: "easeInOutQuad",
                         duration: 200,
                         complete: () => {
@@ -185,13 +185,14 @@ export default {
                         },
                     });
             } else {
+                this.inAna = true;
                 this.$anime
                     .timeline()
                     // 居中
                     .add({
                         targets: changerEle,
-                        left: "-=215",
-                        top: "+=215",
+                        translateX: -250 + 70 - 25,
+                        translateY: 250 - 110 + 70 - 25,
                         easing: "easeInOutQuad",
                         duration: 200,
                         "border-radius": "50%",
@@ -199,8 +200,8 @@ export default {
                     // 覆盖
                     .add({
                         targets: changerEle,
-                        left: "-=225px",
-                        top: "-=225px",
+                        translateX: -430,
+                        translateY: -40,
                         width: "500px",
                         height: "500px",
                         "line-height": "500px",
@@ -216,8 +217,8 @@ export default {
                         targets: changerEle,
                         height: "140px",
                         width: "140px",
-                        left: "+=180",
-                        top: "+=180",
+                        translateX: -250,
+                        translateY: 140,
                         "line-height": "140px",
                         "border-radius": "50%",
                         easing: "easeInOutQuad",
@@ -226,9 +227,12 @@ export default {
                     // 右移
                     .add({
                         targets: changerEle,
-                        left: "+=250",
-                        top: "-=140",
+                        translateX: 0,
+                        translateY: 0,
                         easing: "easeInOutQuad",
+                        complete: () => {
+                            this.inAna = false;
+                        },
                         duration: 200,
                     });
                 this.$anime({
@@ -287,6 +291,7 @@ export default {
     position: absolute;
     left: calc(50vw + 250px - 70px);
     top: calc(50vh - 250px - 70px + 110px);
+    /* transform-origin: 50% 50%; */
     font-size: 40px;
     cursor: pointer;
     z-index: 10;
