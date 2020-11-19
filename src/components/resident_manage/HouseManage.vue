@@ -4,7 +4,7 @@
             title="房屋管理"
             :sub-title="'拥有房产:' + houseNumber + '套'"
         ></b-card>
-        <b-row>
+        <b-row class="row-contianer">
             <b-col lg="3" md="12">
                 <b-card header-tag="header">
                     <template #header>
@@ -151,4 +151,8 @@ export default {
 </script>
 
 <style scoped>
+.row-contianer {
+    padding-left: 7px;
+    padding-top: 7px;
+}
 </style>
