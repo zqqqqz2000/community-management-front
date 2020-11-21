@@ -48,16 +48,16 @@ export default {
                             {
                                 title: "报修",
                                 key: "maintenance_manage",
-                                url: "/resident-manage/maintenance-manage",
+                                url: "/property-manage/maintenance-manage",
                             },
                         ],
                     },
                     {
-                        title: "账号管理",
+                        title: "账号和信息管理",
                         key: "account_manage",
                         childs: [
                             {
-                                title: "个人信息",
+                                title: "小区信息",
                                 key: "personal_information",
                                 url: "/resident-manage/personal-information",
                             },

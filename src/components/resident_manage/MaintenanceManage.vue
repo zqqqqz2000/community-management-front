@@ -184,7 +184,12 @@
                 </div>
                 <div v-else>
                     维修状态: 未维修
-                    <b-button size="sm" variant="danger">撤销申请</b-button>
+                    <b-button
+                        size="sm"
+                        variant="danger"
+                        @click="deleteMaintenance(currentMaintenance.id)"
+                        >撤销申请</b-button
+                    >
                 </div>
                 <div>
                     报修细则:
@@ -230,6 +235,24 @@ export default {
         },
     },
     methods: {
+        deleteMaintenance: function (id) {
+            this.$axios({
+                url: this.serverURL + "resident/delete_maintenance",
+                method: "post",
+                withCredentials: true,
+                data: {
+                    token: this.$cookies.get("token"),
+                    id,
+                },
+            }).then((response) => {
+                let data = response.data;
+                if (data.success) {
+                    this.getMaintenance();
+                } else {
+                    this.alerter("错误", data.info);
+                }
+            });
+        },
         onRowSelected: function (item) {
             this.selectedMaintenance = item[0].id;
             this.applyDetail = true;

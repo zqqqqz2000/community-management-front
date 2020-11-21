@@ -8,6 +8,7 @@ import HousegManage from './components/resident_manage/HouseManage'
 import MaintenanceManage from './components/resident_manage/MaintenanceManage'
 import PersonalInformation from './components/resident_manage/PersonalInformation'
 import PropertyManage from './components/property_manage/PropertyManage'
+import MaintenanceManageProp from './components/property_manage/MaintenanceManage'
 import ParkingSpotManage from './components/property_manage/ParkingSpotManage'
 import HouseManageP from './components/property_manage/HouseManageP'
 import VueRouter from 'vue-router'
@@ -99,6 +100,13 @@ const routes = [
         component: HouseManageP,
         meta: {
           title: '房屋管理'
+        }
+      },
+      {
+        path: 'maintenance-manage',
+        component: MaintenanceManageProp,
+        meta: {
+          title: '物业管理'
         }
       }
     ]
