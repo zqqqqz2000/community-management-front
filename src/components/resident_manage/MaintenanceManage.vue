@@ -18,8 +18,69 @@
                 >
                     维修记录
                 </b-nav-item>
+                <b-nav-item
+                    :active="currentTab == 'recharge'"
+                    @click="currentTab = 'recharge'"
+                >
+                    维修基金充值
+                </b-nav-item>
             </b-nav>
             <div>
+                <!-- 充值 -->
+                <div v-if="currentTab == 'recharge'">
+                    <b-card title="充值" style="">
+                        <div style="padding-top: 20px; padding-bottom: 20px">
+                            <div class="progress-container">
+                                <h5>选择基金充值房屋</h5>
+                                <b-card
+                                    v-for="(house, index) of houses"
+                                    :key="index"
+                                    border-variant="warning"
+                                    header-border-variant="secondary"
+                                    style="width: 130px; text-align: center"
+                                    class="house"
+                                    @click="
+                                        chargeId = house.id;
+                                        chargeShow = true;
+                                    "
+                                >
+                                    <div style="color: red">
+                                        余额: {{ house.maintenance_balance }}
+                                    </div>
+                                    <b-icon
+                                        font-scale="2"
+                                        icon="house-fill"
+                                    ></b-icon>
+                                    <br />
+                                    {{ house.building_number }}
+                                    <br />
+                                    <b-badge variant="primary">{{
+                                        house.room_number
+                                    }}</b-badge>
+                                </b-card>
+                            </div>
+                        </div>
+                    </b-card>
+                    <b-modal
+                        v-model="chargeShow"
+                        title="维修基金充值"
+                        @ok="
+                            rechargeFunc();
+                            chargeShow = false;
+                        "
+                    >
+                        <b-form-group
+                            description="充值后立即汇入房屋维修基金余额"
+                            label="充值金额"
+                        >
+                            <b-form-input
+                                v-model="recharge"
+                                type="number"
+                            ></b-form-input>
+                        </b-form-group>
+                    </b-modal>
+                </div>
+                <!-- 申请 -->
                 <div v-if="currentTab == 'apply'">
                     <b-card title="报修" style="">
                         <b-progress
@@ -222,6 +283,9 @@ export default {
             maintenances: [],
             selectedMaintenance: 0,
             duration: 0,
+            chargeId: -1,
+            chargeShow: false,
+            recharge: 0,
         };
     },
     computed: {
@@ -235,6 +299,26 @@ export default {
         },
     },
     methods: {
+        rechargeFunc: function () {
+            this.$axios({
+                url: this.serverURL + "resident/recharge",
+                method: "post",
+                withCredentials: true,
+                data: {
+                    token: this.$cookies.get("token"),
+                    id: this.chargeId,
+                    sum: this.recharge,
+                },
+            }).then((response) => {
+                let data = response.data;
+                if (data.success) {
+                    this.alerter("成功", "充值成功");
+                    this.getHouses();
+                } else {
+                    this.alerter("错误", data.info);
+                }
+            });
+        },
         deleteMaintenance: function (id) {
             this.$axios({
                 url: this.serverURL + "resident/delete_maintenance",
@@ -318,6 +402,7 @@ export default {
                         this.applyStep = 4;
                         this.duration = 100;
                         this.getMaintenance();
+                        this.getHouses();
                     } else {
                         this.alerter("错误", data.info);
                     }
