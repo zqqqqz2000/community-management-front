@@ -2,6 +2,8 @@
     <div>
         <b-card title="房屋管理" :sub-title="'小区住房'"></b-card>
         <b-table
+            class="house-table"
+            sticky-header="calc(100vh - 150px)"
             :fields="[
                 'id',
                 'building_number',
@@ -89,6 +91,7 @@
         </b-modal>
         <b-modal title="收费记录" v-model="propertyFeeShow" size="lg">
             <b-table
+                sticky-header="calc(100vh - 150px)"
                 :items="propertyFeeHis"
                 :fields="[
                     'id',
@@ -229,7 +232,7 @@ export default {
 </script>
 
 <style scoped>
-.spot-table button {
+.house-table button {
     margin-left: 3px;
 }
 </style>

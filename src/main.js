@@ -14,14 +14,18 @@ import HouseManageP from './components/property_manage/HouseManageP'
 import VueRouter from 'vue-router'
 import axios from 'axios'
 import VueCookies from 'vue-cookies'
+import PropertyInformation from './components/property_manage/PropertyInformation'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import ECharts from 'vue-echarts'
+import 'echarts/lib/chart/line'
 import VueAnime from 'vue-animejs';
 
 axios.defaults.withCredentials = true;
 Vue.config.productionTip = false
 Vue.use(VueRouter)
+Vue.component('v-chart', ECharts)
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.use(VueCookies)
@@ -107,6 +111,13 @@ const routes = [
         component: MaintenanceManageProp,
         meta: {
           title: '物业管理'
+        }
+      },
+      {
+        path: 'property-information',
+        component: PropertyInformation,
+        meta: {
+          title: '小区信息'
         }
       }
     ]

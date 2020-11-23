@@ -4,6 +4,40 @@
             title="住户管理"
             :sub-title="'小区住户: ' + residentNumber + '个'"
         ></b-card>
+        <!-- 搜索栏 -->
+        <b-collapse id="my-collapse" class="searcher">
+            <div>高级搜索</div>
+            <b-form-input
+                v-model="search.username"
+                placeholder="用户名"
+            ></b-form-input>
+            <b-form-input
+                v-model="search.name"
+                placeholder="姓名"
+            ></b-form-input>
+            <b-form-input
+                v-model="search.phone_number"
+                placeholder="手机号"
+            ></b-form-input>
+            <b-form-input
+                v-model="search.job"
+                placeholder="职位"
+            ></b-form-input>
+            <b-button style="display: inline-block" @click="searchFunc()">
+                搜索
+            </b-button>
+        </b-collapse>
+        <div style="width: 100%; text-align: center">
+            <b-button
+                variant="light"
+                size="sm"
+                v-b-toggle.my-collapse
+                style="position: absolute; height: 20px; line-height: 20px"
+            >
+                <b-icon icon="chevron-down"></b-icon>
+            </b-button>
+        </div>
+
         <b-table
             ref="residentTable"
             selectable
@@ -233,9 +267,26 @@ export default {
             buildingNumber: null,
             roomNumber: null,
             userHouses: [],
+            search: { token: this.$cookies.get("token") },
         };
     },
     methods: {
+        searchFunc: function () {
+            this.$axios({
+                method: "post",
+                url: this.serverURL + "property/query_resident",
+                withCredentials: true,
+                data: this.search,
+            }).then((response) => {
+                console.log(this.alerter);
+                let data = response.data;
+                if (data.success) {
+                    this.resident_table = data.residents;
+                } else {
+                    this.alerter("错误", data.info);
+                }
+            });
+        },
         refreshTable: function () {
             this.$axios({
                 method: "post",
@@ -444,5 +495,11 @@ export default {
 <style scoped>
 .resident-table button {
     margin-left: 3px;
+}
+.searcher input {
+    width: 20%;
+    display: inline-block;
+    margin-right: 7px;
+    vertical-align: middle;
 }
 </style>

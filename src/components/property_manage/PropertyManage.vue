@@ -59,7 +59,7 @@ export default {
                             {
                                 title: "小区信息",
                                 key: "personal_information",
-                                url: "/resident-manage/personal-information",
+                                url: "/property-manage/property-information",
                             },
                             {
                                 title: "登出",

@@ -5,6 +5,7 @@
             :sub-title="'小区停车位: ' + parkingSpotNum + '个'"
         ></b-card>
         <b-table
+            sticky-header="calc(100vh - 150px)"
             :items="parkingSpots"
             :fields="['id', 'parking_spot_number', 'license', 'actions']"
             class="spot-table"
@@ -72,6 +73,7 @@
         </b-modal>
         <b-modal title="收费历史" v-model="hisShow" size="lg">
             <b-table
+                sticky-header="calc(100vh - 150px)"
                 :fields="[
                     'id',
                     'date',

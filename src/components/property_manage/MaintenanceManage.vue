@@ -2,6 +2,7 @@
     <div>
         <b-card title="维修处理" sub-title="住户所有的维修申请处理"></b-card>
         <b-table
+            sticky-header="calc(100vh - 150px)"
             :fields="[
                 'id',
                 'building_num',

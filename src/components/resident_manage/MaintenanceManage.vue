@@ -211,6 +211,7 @@
                         sub-title="点击条目查看详情，蓝色为未维修条目"
                     >
                         <b-table
+                            sticky-header="calc(100vh - 150px)"
                             selectable
                             select-mode="single"
                             @row-selected="onRowSelected"
