@@ -330,6 +330,182 @@
                     "filename": "src\\main.js"
                 }
             ]
+        },
+        {
+            "version": "0.1.7",
+            "counttime": "2020-11-23 11:44:44",
+            "filesum": 27,
+            "codesum": 15656,
+            "commentsum": 13,
+            "blanksum": 56,
+            "filelist": [
+                {
+                    "blank": 4,
+                    "code": 19,
+                    "comment": 0,
+                    "filename": ".gitignore"
+                },
+                {
+                    "blank": 1,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "babel.config.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 12445,
+                    "comment": 0,
+                    "filename": "package-lock.json"
+                },
+                {
+                    "blank": 2,
+                    "code": 49,
+                    "comment": 0,
+                    "filename": "package.json"
+                },
+                {
+                    "filename": "public\\favicon.ico",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 16,
+                    "comment": 1,
+                    "filename": "public\\index.html"
+                },
+                {
+                    "blank": 5,
+                    "code": 19,
+                    "comment": 1,
+                    "filename": "README.md"
+                },
+                {
+                    "blank": 2,
+                    "code": 21,
+                    "comment": 0,
+                    "filename": "src\\App.vue"
+                },
+                {
+                    "filename": "src\\assets\\admin\\background.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\assets\\admin\\bg1.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src\\assets\\logo.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 2,
+                    "code": 260,
+                    "comment": 11,
+                    "filename": "src\\components\\admin\\Admin.vue"
+                },
+                {
+                    "blank": 3,
+                    "code": 129,
+                    "comment": 0,
+                    "filename": "src\\components\\admin\\FloatBar.vue"
+                },
+                {
+                    "blank": 3,
+                    "code": 132,
+                    "comment": 0,
+                    "filename": "src\\components\\FInput.vue"
+                },
+                {
+                    "blank": 3,
+                    "code": 219,
+                    "comment": 0,
+                    "filename": "src\\components\\property_manage\\HouseManageP.vue"
+                },
+                {
+                    "blank": 2,
+                    "code": 146,
+                    "comment": 0,
+                    "filename": "src\\components\\property_manage\\MaintenanceManage.vue"
+                },
+                {
+                    "blank": 3,
+                    "code": 221,
+                    "comment": 0,
+                    "filename": "src\\components\\property_manage\\ParkingSpotManage.vue"
+                },
+                {
+                    "blank": 2,
+                    "code": 209,
+                    "comment": 0,
+                    "filename": "src\\components\\property_manage\\PropertyInformation.vue"
+                },
+                {
+                    "blank": 2,
+                    "code": 94,
+                    "comment": 0,
+                    "filename": "src\\components\\property_manage\\PropertyManage.vue"
+                },
+                {
+                    "blank": 4,
+                    "code": 480,
+                    "comment": 0,
+                    "filename": "src\\components\\property_manage\\ResidentMemberManage.vue"
+                },
+                {
+                    "blank": 2,
+                    "code": 147,
+                    "comment": 0,
+                    "filename": "src\\components\\resident_manage\\HouseManage.vue"
+                },
+                {
+                    "blank": 3,
+                    "code": 416,
+                    "comment": 0,
+                    "filename": "src\\components\\resident_manage\\MaintenanceManage.vue"
+                },
+                {
+                    "blank": 2,
+                    "code": 147,
+                    "comment": 0,
+                    "filename": "src\\components\\resident_manage\\ParkingManage.vue"
+                },
+                {
+                    "blank": 2,
+                    "code": 119,
+                    "comment": 0,
+                    "filename": "src\\components\\resident_manage\\PersonalInformation.vue"
+                },
+                {
+                    "blank": 2,
+                    "code": 89,
+                    "comment": 0,
+                    "filename": "src\\components\\resident_manage\\ResidentManage.vue"
+                },
+                {
+                    "blank": 2,
+                    "code": 139,
+                    "comment": 0,
+                    "filename": "src\\components\\SideBar.vue"
+                },
+                {
+                    "blank": 5,
+                    "code": 136,
+                    "comment": 0,
+                    "filename": "src\\main.js"
+                }
+            ]
         }
     ]
 }

@@ -35,3 +35,42 @@ src\components\resident_manage\ResidentManage.vue, code is 84, comment is 0, bla
 src\components\SideBar.vue, code is 139, comment is 0, blank is 2.
 src\main.js, code is 115, comment is 0, blank is 5.
 ===============================================================================
+===============================================================================
+EXTENSION NAME : linecount
+EXTENSION VERSION : 0.1.7
+-------------------------------------------------------------------------------
+count time : 2020-11-23 11:44:44
+count workspace : d:\project\vue\community-management
+total files : 27
+total code lines : 15656
+total comment lines : 13
+total blank lines : 56
+
+.gitignore, code is 19, comment is 0, blank is 4.
+babel.config.js, code is 4, comment is 0, blank is 1.
+package-lock.json, code is 12445, comment is 0, blank is 0.
+package.json, code is 49, comment is 0, blank is 2.
+public\favicon.ico, it is a binary file.
+public\index.html, code is 16, comment is 1, blank is 0.
+README.md, code is 19, comment is 1, blank is 5.
+src\App.vue, code is 21, comment is 0, blank is 2.
+src\assets\admin\background.jpg, it is a binary file.
+src\assets\admin\bg1.jpg, it is a binary file.
+src\assets\logo.png, it is a binary file.
+src\components\admin\Admin.vue, code is 260, comment is 11, blank is 2.
+src\components\admin\FloatBar.vue, code is 129, comment is 0, blank is 3.
+src\components\FInput.vue, code is 132, comment is 0, blank is 3.
+src\components\property_manage\HouseManageP.vue, code is 219, comment is 0, blank is 3.
+src\components\property_manage\MaintenanceManage.vue, code is 146, comment is 0, blank is 2.
+src\components\property_manage\ParkingSpotManage.vue, code is 221, comment is 0, blank is 3.
+src\components\property_manage\PropertyInformation.vue, code is 209, comment is 0, blank is 2.
+src\components\property_manage\PropertyManage.vue, code is 94, comment is 0, blank is 2.
+src\components\property_manage\ResidentMemberManage.vue, code is 480, comment is 0, blank is 4.
+src\components\resident_manage\HouseManage.vue, code is 147, comment is 0, blank is 2.
+src\components\resident_manage\MaintenanceManage.vue, code is 416, comment is 0, blank is 3.
+src\components\resident_manage\ParkingManage.vue, code is 147, comment is 0, blank is 2.
+src\components\resident_manage\PersonalInformation.vue, code is 119, comment is 0, blank is 2.
+src\components\resident_manage\ResidentManage.vue, code is 89, comment is 0, blank is 2.
+src\components\SideBar.vue, code is 139, comment is 0, blank is 2.
+src\main.js, code is 136, comment is 0, blank is 5.
+===============================================================================

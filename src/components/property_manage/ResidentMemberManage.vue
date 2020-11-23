@@ -32,7 +32,12 @@
                 variant="light"
                 size="sm"
                 v-b-toggle.my-collapse
-                style="position: absolute; height: 20px; line-height: 20px"
+                style="
+                    position: absolute;
+                    height: 20px;
+                    line-height: 20px;
+                    z-index: 9;
+                "
             >
                 <b-icon icon="chevron-down"></b-icon>
             </b-button>
@@ -44,6 +49,7 @@
             hover
             class="resident-table"
             :items="resident_table"
+            sticky-header="calc(100vh - 270px)"
             :fields="[
                 'id',
                 'username',
