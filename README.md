@@ -1,4 +1,4 @@
-# community-management(小区管理系统)
+# community-management小区管理系统（学校大作业）
 
 ## 前言
 
